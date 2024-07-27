@@ -15,4 +15,7 @@ private:
 public:
 	~DebugConsole();
 	static void Write(std::wstring format , ...);
+	static void Show();
+	static void Hide();
+
 };

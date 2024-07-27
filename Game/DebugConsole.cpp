@@ -37,6 +37,14 @@ void DebugConsole::Write(std::wstring format, ...)
 	}
 #endif
 }
+void DebugConsole::Show()
+{
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
+}
+void DebugConsole::Hide()
+{
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
+}
 HANDLE DebugConsole::GetConsole()
 {
 	//Write에 의해 호출됨으로 상위 뮤텍스에 의해 스레드 세이프하다.
