@@ -1,12 +1,12 @@
-module;
 #pragma once
 #define WIN32_LEAN_AND_MEAN
-#include <crtdbg.h>
 #include <Windows.h>
-export module Main;
+#include <string>
+#include <crtdbg.h>
+#include <hidusage.h>
+#include <thread>
 import App;
-
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
+int main()
 {
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);

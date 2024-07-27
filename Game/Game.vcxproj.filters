@@ -25,14 +25,11 @@
     <Filter Include="소스 파일\Utils">
       <UniqueIdentifier>{711fbd1d-4a82-4aac-9e34-16bf9cbcf61d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\App">
+      <UniqueIdentifier>{2e8b1866-cc8f-4078-9a73-22be154fcc16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="App.ixx">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="App.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="DebugConsole.cpp">
       <Filter>소스 파일\Console</Filter>
     </ClCompile>
@@ -60,11 +57,17 @@
     <ClCompile Include="Window.ixx">
       <Filter>소스 파일\Window</Filter>
     </ClCompile>
-    <ClCompile Include="main.ixx">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>소스 파일\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="App.ixx">
+      <Filter>소스 파일\App</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
