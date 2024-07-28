@@ -4,6 +4,7 @@ module;
 #include <Windows.h>
 #include <string>
 module Input;
+import DebugConsole;
 
 Input* Input::instance = nullptr;
 
@@ -39,12 +40,7 @@ std::wstring Input::GetVkeyName(unsigned short vkey)
 	return L"???";
 }
 
-void Input::Bindkey(unsigned short logicKey, unsigned short vkey)
-{
-	keys[logicKey] = vkey;
-}
-
-void Input::UpdateKeyState(unsigned short vkey, unsigned short message)
+void Input::Update()
 {
 
 }

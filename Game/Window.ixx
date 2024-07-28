@@ -1,16 +1,16 @@
 module;
 #pragma once
 #define WIN32_LEAN_AND_MEAN
-#include <string>
 #include <Windows.h>
+#include <string>
 export module Window;
+import std;
 
 export class Window
 {
 	friend class WindowTask;
 private:
 	std::wstring Regist_WindowName = L"GameWindow";
-	static LRESULT MessageProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void CheckErr();
 	void Register_Window();
 	void Create_Window();

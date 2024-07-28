@@ -2,6 +2,7 @@ export module AppTask;
 import MultiTask;
 import App;
 import IFrameTask;
+
 export class AppTask
 {
 private:

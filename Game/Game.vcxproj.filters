@@ -92,5 +92,8 @@
     <ClCompile Include="FramePerCounter.cpp">
       <Filter>소스 파일\Utils\FramePerCounter</Filter>
     </ClCompile>
+    <ClCompile Include="SRWLockGuard.ixx">
+      <Filter>소스 파일\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

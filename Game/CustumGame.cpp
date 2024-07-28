@@ -13,8 +13,7 @@ void CustumGame::Update()
 {
 	if (brun)
 	{
-		DWORD threadId = GetCurrentThreadId();
-		DebugConsole::Write(L"Thread task : %d  , FPS : %f \n", threadId , fps.Count(NULL) );
+		//DebugConsole::Write(L"Thread task : %d  , FPS : %f \n", GetCurrentThreadId() , fps.Count(NULL) );
 		//Do Somthing
 	}
 }

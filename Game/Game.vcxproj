@@ -159,6 +159,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiTask.cpp" />
     <ClCompile Include="MultiTask.ixx" />
+    <ClCompile Include="SRWLockGuard.ixx" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Window.ixx" />
     <ClCompile Include="WindowTask.cpp" />

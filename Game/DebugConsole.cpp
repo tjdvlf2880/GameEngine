@@ -6,7 +6,7 @@ module DebugConsole;
 import std;
 
 HANDLE DebugConsole::hConsole = nullptr;
-std::mutex DebugConsole::mtx;
+std::mutex mtx;
 
 DebugConsole::DebugConsole()
 {
@@ -31,7 +31,7 @@ void DebugConsole::Write(std::wstring format, ...)
 		va_end(args);
 		DWORD bytesWritten = 0;
 		{
-			std::lock_guard<std::mutex> lock(DebugConsole::mtx);
+			std::lock_guard<std::mutex> lock(mtx);
 			WriteConsole(GetConsole(), buffer, wcslen(buffer), &bytesWritten, NULL);
 		}
 	}

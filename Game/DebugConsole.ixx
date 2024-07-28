@@ -11,7 +11,6 @@ private:
 	DebugConsole();
 	static HANDLE hConsole;
 	static HANDLE GetConsole();
-	static std::mutex mtx;
 public:
 	~DebugConsole();
 	static void Write(std::wstring format , ...);

@@ -2,6 +2,8 @@ module;
 #pragma once
 module App;
 import DebugConsole;
+import Input;
+
 App::App(IFrameTask* task)
 	:frametask(task)
 {
@@ -21,6 +23,7 @@ void App::Run()
 	windowTask.Run();
 	while (brun)
 	{
+		Input::GetInst()->Update();
 		frametask->Update();
 	}
 }
