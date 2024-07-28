@@ -7,7 +7,6 @@ export module Window;
 
 export class Window
 {
-public:
 	friend class WindowTask;
 private:
 	std::wstring Regist_WindowName = L"GameWindow";

@@ -6,7 +6,6 @@ module;
 #include <Windows.h>
 export module MultiTask;
 import std;
-
 export class MultiTask
 {
 public:

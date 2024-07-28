@@ -63,5 +63,5 @@ void MultiTask::Delete()
 	run = false;
 	ReleaseSemaphore(thread_sem, 1, 0);
 	worker.value().join();
-	//worker.reset();
+	worker.reset();
 }

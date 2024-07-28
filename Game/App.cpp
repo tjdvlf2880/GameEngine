@@ -2,28 +2,32 @@ module;
 #pragma once
 module App;
 import DebugConsole;
-bool App::Initialize()
+App::App(IFrameTask* task)
+	:frametask(task)
+{
+
+}
+
+void App::Initialize()
 {
 	DebugConsole::Write(L"EngineInitialize\n");
 	windowTask.Initialize();
-	return true;
+	frametask->Initialize();
 }
 
-bool App::Run()
+void App::Run()
 {
 	DebugConsole::Write(L"EngineRun\n");
-	AppRun = true;
 	windowTask.Run();
-	AppRun = false;
-	return true;
+	while (brun)
+	{
+		frametask->Update();
+	}
 }
 
-bool App::Release()
+void App::Release()
 {
 	DebugConsole::Write(L"EngineRelease\n");
+	frametask->Release();
 	windowTask.Release();
-	return true;
 }
-
-
-

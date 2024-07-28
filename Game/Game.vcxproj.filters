@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -28,6 +24,12 @@
     <Filter Include="소스 파일\App">
       <UniqueIdentifier>{2e8b1866-cc8f-4078-9a73-22be154fcc16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Utils\MultiThread">
+      <UniqueIdentifier>{5ba7172b-1f8f-4074-872d-2de4c8d611a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utils\FramePerCounter">
+      <UniqueIdentifier>{1ac2d44f-79fe-4fba-ad66-ce8d591c0d32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DebugConsole.cpp">
@@ -41,12 +43,6 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>소스 파일\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiTask.ixx">
-      <Filter>소스 파일\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiTask.cpp">
-      <Filter>소스 파일\Utils</Filter>
     </ClCompile>
     <ClCompile Include="WindowTask.ixx">
       <Filter>소스 파일\Window</Filter>
@@ -68,6 +64,33 @@
     </ClCompile>
     <ClCompile Include="App.ixx">
       <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTask.cpp">
+      <Filter>소스 파일\Utils\MultiThread</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTask.ixx">
+      <Filter>소스 파일\Utils\MultiThread</Filter>
+    </ClCompile>
+    <ClCompile Include="IFrameTask.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CustumGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CustumGame.ixx">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AppTask.ixx">
+      <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="AppTask.cpp">
+      <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="FramePerCounter.ixx">
+      <Filter>소스 파일\Utils\FramePerCounter</Filter>
+    </ClCompile>
+    <ClCompile Include="FramePerCounter.cpp">
+      <Filter>소스 파일\Utils\FramePerCounter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

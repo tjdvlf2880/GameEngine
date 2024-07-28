@@ -145,8 +145,15 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="App.ixx" />
+    <ClCompile Include="AppTask.cpp" />
+    <ClCompile Include="AppTask.ixx" />
+    <ClCompile Include="CustumGame.ixx" />
     <ClCompile Include="DebugConsole.cpp" />
     <ClCompile Include="DebugConsole.ixx" />
+    <ClCompile Include="CustumGame.cpp" />
+    <ClCompile Include="FramePerCounter.cpp" />
+    <ClCompile Include="FramePerCounter.ixx" />
+    <ClCompile Include="IFrameTask.ixx" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Input.ixx" />
     <ClCompile Include="main.cpp" />

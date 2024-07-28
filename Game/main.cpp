@@ -1,19 +1,21 @@
 #pragma once
 #define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#include <string>
 #include <crtdbg.h>
-#include <hidusage.h>
-#include <thread>
-import App;
+import AppTask;
+import CustumGame;
 int main()
 {
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif // _DEBUG
-	App app;
-	app.Initialize();
-	app.Run();
-	app.Release();
+
+	AppTask app[2];
+	CustumGame mygame[2];
+	for (int i = 0; i < 2; i++)
+	{
+		app[i].Initialize(&mygame[i]);
+		app[i].Run();
+		//app[i].Release();
+	}
 	return 0;
 }

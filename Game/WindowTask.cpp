@@ -20,6 +20,7 @@ void WindowTask::Initialize()
 			window.Create_Window();
 			window.Register_InputDevice();
 		});
+	task.JoinTask();
 }
 
 void WindowTask::Run()

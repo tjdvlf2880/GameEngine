@@ -21,7 +21,7 @@ Input* Input::GetInst()
 	return instance;
 }
 
-std::wstring Input::GetVkeyName(unsigned int vkey)
+std::wstring Input::GetVkeyName(unsigned short vkey)
 {
 	TCHAR keyName[256] = { 0 };
 	UINT scanCode = MapVirtualKey(vkey, MAPVK_VK_TO_VSC);
@@ -37,6 +37,16 @@ std::wstring Input::GetVkeyName(unsigned int vkey)
 		return keyName;
 	}
 	return L"???";
+}
+
+void Input::Bindkey(unsigned short logicKey, unsigned short vkey)
+{
+	keys[logicKey] = vkey;
+}
+
+void Input::UpdateKeyState(unsigned short vkey, unsigned short message)
+{
+
 }
 
 Input::~Input()
