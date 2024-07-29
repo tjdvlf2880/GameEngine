@@ -7,7 +7,7 @@ export class TimeCounter
 {
 public:
 	void Reset();
-	void Sleep(long miliseconds);
+	static void Sleep(long miliseconds);
 	double Update();
 private:
 	std::chrono::duration<double> tick;

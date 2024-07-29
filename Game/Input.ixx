@@ -13,6 +13,7 @@ private:
 	int RefCount;
 public:
 	Input();
+	~Input();
 	std::wstring GetVkeyName(unsigned short vkey);
 	void Update();
 	bool RegisterRawInput(HWND hwnd);

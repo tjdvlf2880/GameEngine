@@ -13,6 +13,11 @@ Input::Input()
 	RefCount = 0;
 }
 
+Input::~Input()
+{
+	RefCount = 0;
+}
+
 std::wstring Input::GetVkeyName(unsigned short vkey)
 {
 	TCHAR keyName[256] = { 0 };

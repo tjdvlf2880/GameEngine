@@ -61,11 +61,8 @@ void MultiTask::Delete()
 	if (worker.has_value())
 	{
 		worker.value().join();
-		worker.reset();
 	}
-	CrtReport report;
-
+	worker.reset();
 	CloseHandle(task_sem);
 	CloseHandle(thread_sem);
-	report.Check();
 }

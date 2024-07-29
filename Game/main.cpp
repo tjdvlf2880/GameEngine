@@ -10,6 +10,7 @@ import DebugConsole;
 import AppTask;
 import CustumGame;
 import Input;
+import TimeCounter;
 
 
 #define Main_Console
@@ -22,24 +23,12 @@ int main()
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 #endif
 {
-	CrtReport report;
 	DebugConsole::Create();
-	report.MemCheckPoint();
-
-
-	std::optional<std::thread> worker;
-	int count;
-	worker.emplace([&count]() { count++; });
-	if (worker.has_value())
-	{
-		worker.value().join();
-		worker.reset();
-	}
-	report.Check();
-
+	CrtReport report;
+	CustumGame game;
 	{
 		Input::GetInst()->Create();
-		CustumGame game;
+		CrtReport test;
 		AppTask app;
 		app.Initialize(&game);
 		app.Run();
@@ -48,6 +37,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLi
 	}
 	report.Check(DumpMode::Conosle);
 	DebugConsole::GetInst()->Delete();
-	report.FinalCheck(DumpMode::Conosle);
+	report.FinalCheck(DumpMode::VsOutput);
 	return 0;
 }

@@ -10,7 +10,7 @@ export class WindowTask
 {
 private:
 	MultiTask task;
-	Window window;
+	Window* window;
 public:
 	void Initialize();
 	void Run();

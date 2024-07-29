@@ -30,11 +30,7 @@ void AppTask::Release()
 	task.SetTask([this]()
 		{
 			app->Release();
+			delete app;
 		});
-	task.JoinTask();
-	//CrtReport report;
-	//report.MemCheckPoint();
-	//report.Check();
 	task.Delete();
-	
 }
