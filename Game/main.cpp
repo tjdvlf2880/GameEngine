@@ -3,16 +3,11 @@
 #include <Windows.h>
 #include <string>
 import CrtReport;
+import CustumGame;
 import std;
-
-
 import DebugConsole;
 import AppTask;
-import CustumGame;
 import Input;
-import TimeCounter;
-
-
 #define Main_Console
 
 #ifdef Main_Console
@@ -28,7 +23,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLi
 	CustumGame game;
 	{
 		Input::GetInst()->Create();
-		CrtReport test;
 		AppTask app;
 		app.Initialize(&game);
 		app.Run();
