@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Console">
-      <UniqueIdentifier>{6e31801d-97cb-4c42-9430-f83cec29ae90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Input">
       <UniqueIdentifier>{5ed49742-f0be-46f7-ac27-6cc298ea5263}</UniqueIdentifier>
     </Filter>
@@ -30,13 +27,31 @@
     <Filter Include="소스 파일\Utils\FramePerCounter">
       <UniqueIdentifier>{1ac2d44f-79fe-4fba-ad66-ce8d591c0d32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Utils\Timer">
+      <UniqueIdentifier>{2c112d0f-e454-44fb-be09-d2c12ac59c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utils\String">
+      <UniqueIdentifier>{a4674a96-7c65-4d69-a8be-119b6245140d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utils\Debug">
+      <UniqueIdentifier>{2cabc319-7c92-429a-a39b-42d905d6508a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utils\Debug\Console">
+      <UniqueIdentifier>{6e31801d-97cb-4c42-9430-f83cec29ae90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utils\Debug\CrtReport">
+      <UniqueIdentifier>{e22f8e01-b407-426d-8e44-ce6e26d12575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utils\Singleton">
+      <UniqueIdentifier>{3de53ff1-5b74-48f6-aca8-a697a9bc4f7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DebugConsole.cpp">
-      <Filter>소스 파일\Console</Filter>
+      <Filter>소스 파일\Utils\Debug\Console</Filter>
     </ClCompile>
     <ClCompile Include="DebugConsole.ixx">
-      <Filter>소스 파일\Console</Filter>
+      <Filter>소스 파일\Utils\Debug\Console</Filter>
     </ClCompile>
     <ClCompile Include="Input.ixx">
       <Filter>소스 파일\Input</Filter>
@@ -94,6 +109,24 @@
     </ClCompile>
     <ClCompile Include="SRWLockGuard.ixx">
       <Filter>소스 파일\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeCounter.ixx">
+      <Filter>소스 파일\Utils\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeCounter.cpp">
+      <Filter>소스 파일\Utils\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="StrConverter.ixx">
+      <Filter>소스 파일\Utils\String</Filter>
+    </ClCompile>
+    <ClCompile Include="CrtReport.ixx">
+      <Filter>소스 파일\Utils\Debug\CrtReport</Filter>
+    </ClCompile>
+    <ClCompile Include="CrtReport.cpp">
+      <Filter>소스 파일\Utils\Debug\CrtReport</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.ixx">
+      <Filter>소스 파일\Utils\Singleton</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

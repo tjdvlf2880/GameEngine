@@ -3,18 +3,17 @@ module;
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 export module DebugConsole;
+import Singleton;
 import std;
 
-export class DebugConsole
+export class DebugConsole : public Singleton<DebugConsole>
 {
 private:
-	DebugConsole();
+	static std::mutex mtx;
 	static HANDLE hConsole;
-	static HANDLE GetConsole();
 public:
+	DebugConsole();
 	~DebugConsole();
 	static void Write(std::wstring format , ...);
-	static void Show();
-	static void Hide();
 
 };

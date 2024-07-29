@@ -1,20 +1,21 @@
 module;
 #pragma once
 #define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 #include <string>
 export module Input;
 import std;
+import Singleton;
 
-
-export class Input
+export class Input : public Singleton<Input>
 {
 private:
-	Input();
-	static Input* instance;
+	int RefCount;
 public:
-	~Input();
-	static Input* GetInst();
+	Input();
 	std::wstring GetVkeyName(unsigned short vkey);
 	void Update();
+	bool RegisterRawInput(HWND hwnd);
+	bool UnRegisterRawInput();
 };
 

@@ -9,13 +9,12 @@ import std;
 export class MultiTask
 {
 public:
-    MultiTask();
-    ~MultiTask();
-    void Create();
+    void Create(std::wstring name = L"");
     void SetTask(std::function<void()> func);
     void JoinTask();
     void Delete();
 private:
+    std::wstring taskname;
     bool run;
     bool taskover;
     HANDLE thread_sem;

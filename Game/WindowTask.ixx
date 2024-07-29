@@ -12,8 +12,6 @@ private:
 	MultiTask task;
 	Window window;
 public:
-	WindowTask();
-	~WindowTask();
 	void Initialize();
 	void Run();
 	void Release();

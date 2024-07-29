@@ -1,25 +1,53 @@
 #pragma once
 #define WIN32_LEAN_AND_MEAN
-#include <crtdbg.h>
+#include <Windows.h>
+#include <string>
+import CrtReport;
+import std;
+
+
+import DebugConsole;
 import AppTask;
 import CustumGame;
+import Input;
 
-import Window;
 
+#define Main_Console
+
+#ifdef Main_Console
+#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
 int main()
+#else
+#pragma comment(linker, "/SUBSYSTEM:WINDOWS")
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
+#endif
 {
-#ifdef _DEBUG
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-#endif // _DEBUG
+	CrtReport report;
+	DebugConsole::Create();
+	report.MemCheckPoint();
 
-	const int AppCount = 2;
-	AppTask app[AppCount];
-	CustumGame mygame[AppCount];
-	for (int i = 0; i < AppCount; i++)
+
+	std::optional<std::thread> worker;
+	int count;
+	worker.emplace([&count]() { count++; });
+	if (worker.has_value())
 	{
-		app[i].Initialize(&mygame[i]);
-		app[i].Run();
-		//app[i].Release();
+		worker.value().join();
+		worker.reset();
 	}
+	report.Check();
+
+	{
+		Input::GetInst()->Create();
+		CustumGame game;
+		AppTask app;
+		app.Initialize(&game);
+		app.Run();
+		app.Release();
+		Input::GetInst()->Delete();
+	}
+	report.Check(DumpMode::Conosle);
+	DebugConsole::GetInst()->Delete();
+	report.FinalCheck(DumpMode::Conosle);
 	return 0;
 }

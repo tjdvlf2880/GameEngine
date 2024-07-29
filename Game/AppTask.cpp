@@ -1,19 +1,10 @@
 module;
 #pragma once
 module AppTask;
-
-AppTask::AppTask()
-{
-	task.Create();
-}
-
-AppTask::~AppTask()
-{
-	task.Delete();
-}
-
+import CrtReport;
 void AppTask::Initialize(IFrameTask* frametask)
 {
+	task.Create(L"AppTask");
 	task.SetTask([this , &frametask]()
 		{
 			app = new App(frametask);
@@ -34,9 +25,16 @@ void AppTask::Run()
 
 void AppTask::Release()
 {
+	
 	app->brun = false;
 	task.SetTask([this]()
 		{
 			app->Release();
 		});
+	task.JoinTask();
+	//CrtReport report;
+	//report.MemCheckPoint();
+	//report.Check();
+	task.Delete();
+	
 }

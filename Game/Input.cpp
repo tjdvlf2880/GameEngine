@@ -3,23 +3,14 @@ module;
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <string>
+#include <hidusage.h>
 module Input;
+import SRWLockGuard;
 import DebugConsole;
-
-Input* Input::instance = nullptr;
 
 Input::Input()
 {
-	instance = nullptr;
-}
-
-Input* Input::GetInst()
-{
-	if (instance == nullptr)
-	{
-		instance = new Input();
-	}
-	return instance;
+	RefCount = 0;
 }
 
 std::wstring Input::GetVkeyName(unsigned short vkey)
@@ -42,14 +33,57 @@ std::wstring Input::GetVkeyName(unsigned short vkey)
 
 void Input::Update()
 {
-
 }
 
-Input::~Input()
+
+bool Input::RegisterRawInput(HWND hwnd)
 {
-	if (instance != nullptr)
+	SRWLockGuard<EXCLUSIVE> lock(srwlock);
+	RAWINPUTDEVICE Rid[2] = { 0 };
+	// adds HID mouse and also ignores legacy mouse messages
+	Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	Rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
+	Rid[0].dwFlags = NULL;
+	Rid[0].hwndTarget = hwnd;
+	// adds HID keyboard and also ignores legacy keyboard messages
+	Rid[1].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	Rid[1].usUsage = HID_USAGE_GENERIC_KEYBOARD;
+	Rid[1].dwFlags = RIDEV_NOLEGACY;
+	Rid[1].hwndTarget = hwnd;
+	bool hr = RegisterRawInputDevices(Rid, 2, sizeof(Rid[0]));
+	if (hr)
 	{
-		delete instance;
-		instance = nullptr;
+		RefCount++;
+		DebugConsole::Write(L"+InputDevice : %d \n" , RefCount);
 	}
+	return hr;
+}
+
+bool Input::UnRegisterRawInput()
+{
+	SRWLockGuard<EXCLUSIVE> lock(srwlock);
+	RefCount--;
+	DebugConsole::Write(L"-InputDevice : %d\n", RefCount);
+	if (RefCount)
+	{
+		return true;
+	}
+	RAWINPUTDEVICE Rid[2] = { 0 };
+	// adds HID mouse and also ignores legacy mouse messages
+	Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	Rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
+	Rid[0].dwFlags = RIDEV_REMOVE;
+	Rid[0].hwndTarget = NULL;
+	// adds HID keyboard and also ignores legacy keyboard messages
+	Rid[1].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	Rid[1].usUsage = HID_USAGE_GENERIC_KEYBOARD;
+	Rid[1].dwFlags = RIDEV_REMOVE;
+	Rid[1].hwndTarget = NULL;
+	bool hr = RegisterRawInputDevices(Rid, 2, sizeof(Rid[0]));
+	if (hr)
+	{
+		DebugConsole::Write(L"RemoveALLInputDevice : %d \n", RefCount);
+	}
+
+	return hr;
 }

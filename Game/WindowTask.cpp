@@ -2,23 +2,13 @@ module;
 #pragma once
 module WindowTask;
 
-WindowTask::WindowTask()
-{
-	task.Create();
-}
-
-WindowTask::~WindowTask()
-{
-	task.Delete();
-}
-
 void WindowTask::Initialize()
 {
+	task.Create(L"WindowTask");
 	task.SetTask([this]()
 		{
 			window.Register_Window();
 			window.Create_Window();
-			window.Register_InputDevice();
 		});
 	task.JoinTask();
 }
@@ -36,8 +26,8 @@ void WindowTask::Release()
 {
 	window.Destroy();
 	task.SetTask([this]()
-		{
-			window.UnRegister_InputDevice();
+		{	
 			window.UnRegister_Window();
 		});
+	task.Delete();
 }

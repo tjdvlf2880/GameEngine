@@ -5,12 +5,20 @@ module;
 module DebugConsole;
 import std;
 
+std::mutex DebugConsole::mtx;
 HANDLE DebugConsole::hConsole = nullptr;
-std::mutex mtx;
 
 DebugConsole::DebugConsole()
 {
-	hConsole = nullptr;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hConsole == nullptr)
+	{
+		AllocConsole();
+		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	}
+	HWND consoleWindow = GetConsoleWindow();
+	HMENU hmenu = GetSystemMenu(consoleWindow, FALSE);
+	DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND);
 }
 
 DebugConsole::~DebugConsole()
@@ -32,34 +40,8 @@ void DebugConsole::Write(std::wstring format, ...)
 		DWORD bytesWritten = 0;
 		{
 			std::lock_guard<std::mutex> lock(mtx);
-			WriteConsole(GetConsole(), buffer, wcslen(buffer), &bytesWritten, NULL);
+			WriteConsole(DebugConsole::GetInst()->hConsole, buffer, wcslen(buffer), &bytesWritten, NULL);
 		}
 	}
 #endif
 }
-void DebugConsole::Show()
-{
-	ShowWindow(GetConsoleWindow(), SW_HIDE);
-}
-void DebugConsole::Hide()
-{
-	ShowWindow(GetConsoleWindow(), SW_HIDE);
-}
-HANDLE DebugConsole::GetConsole()
-{
-	//Write에 의해 호출됨으로 상위 뮤텍스에 의해 스레드 세이프하다.
-	if (hConsole == nullptr)
-	{
-		AllocConsole();
-		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-		/*
-			콘솔 창을 닫으면 프로세스가 강제 종료된다.
-			이는 메모리 누수가 발생할 위험이 있음으로 닫기 버튼을 비활성화해두자.
-		*/
-		HWND consoleWindow = GetConsoleWindow();
-		HMENU hmenu = GetSystemMenu(consoleWindow, FALSE);
-		DeleteMenu(hmenu, SC_CLOSE, MF_BYCOMMAND);
-	}
-	return hConsole;
-}
-

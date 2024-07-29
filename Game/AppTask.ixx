@@ -9,8 +9,6 @@ private:
 	MultiTask task;
 	App* app;
 public:
-	AppTask();
-	~AppTask();
 	void Initialize(IFrameTask* task);
 	void Run();
 	void Release();

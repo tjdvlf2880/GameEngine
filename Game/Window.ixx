@@ -9,6 +9,7 @@ import std;
 export class Window
 {
 	friend class WindowTask;
+	friend LRESULT WinMessageProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 private:
 	std::wstring Regist_WindowName = L"GameWindow";
 	void CheckErr();

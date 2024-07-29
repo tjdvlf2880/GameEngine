@@ -2,6 +2,7 @@ module;
 #pragma once;
 #include <chrono>
 export module FramePerCounter;
+import TimeCounter;
 
 export class FramePerCounter
 {
@@ -10,6 +11,7 @@ public:
     double Count(int maxfps);
 private:
     int frame_count;
-    double fps;
-    std::chrono::high_resolution_clock::time_point start_time;
+    float fps;
+    double elapsed_seconds;
+    TimeCounter clock;
 };

@@ -12,6 +12,14 @@ LRESULT WinMessageProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_CREATE:
+	{
+		CREATESTRUCT* pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
+		Window* pwindow = reinterpret_cast<Window*>(pCreate->lpCreateParams);
+		SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)pCreate->lpCreateParams);
+		pwindow->Register_InputDevice();
+		break;
+	}
 	case WM_MOUSEMOVE:
 		POINT pos;
 		pos.x = GET_X_LPARAM(lParam);
@@ -65,6 +73,17 @@ LRESULT WinMessageProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	}
+	case WM_DESTROY:
+	{
+		Window* window = (Window*)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+		if (window)
+		{
+			window->UnRegister_InputDevice();
+			SetWindowLongPtr(hWnd, GWLP_USERDATA, NULL);
+		}
+		PostQuitMessage(0);
+		break;
+	}
 	}
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
@@ -109,7 +128,7 @@ void Window::Create_Window()
 	hwnd = CreateWindowEx(NULL, Regist_WindowName.c_str(), NULL, WS_OVERLAPPED | WS_SIZEBOX,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		CW_USEDEFAULT, CW_USEDEFAULT,
-		NULL, NULL, GetModuleHandleW(NULL), NULL);
+		NULL, NULL, GetModuleHandleW(NULL), this);
 	if (hwnd == NULL)
 	{
 		CheckErr();
@@ -118,38 +137,15 @@ void Window::Create_Window()
 
 void Window::Register_InputDevice()
 {
-	RAWINPUTDEVICE Rid[2] = { 0 };
-	// adds HID mouse and also ignores legacy mouse messages
-	Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
-	Rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
-	Rid[0].dwFlags = NULL;
-	Rid[0].hwndTarget = hwnd;
-	// adds HID keyboard and also ignores legacy keyboard messages
-	Rid[1].usUsagePage = HID_USAGE_PAGE_GENERIC;
-	Rid[1].usUsage = HID_USAGE_GENERIC_KEYBOARD;
-	Rid[1].dwFlags = RIDEV_NOLEGACY;
-	Rid[1].hwndTarget = hwnd;
-	if (!RegisterRawInputDevices(Rid, 2, sizeof(Rid[0])))
+	if (!Input::GetInst()->RegisterRawInput(hwnd))
 	{
 		CheckErr();
 	}
 }
 
-
 void Window::UnRegister_InputDevice()
 {
-	RAWINPUTDEVICE Rid[2] = { 0 };
-	// adds HID mouse and also ignores legacy mouse messages
-	Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
-	Rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
-	Rid[0].dwFlags = RIDEV_REMOVE;
-	Rid[0].hwndTarget = hwnd;
-	// adds HID keyboard and also ignores legacy keyboard messages
-	Rid[1].usUsagePage = HID_USAGE_PAGE_GENERIC;
-	Rid[1].usUsage = HID_USAGE_GENERIC_KEYBOARD;
-	Rid[1].dwFlags = RIDEV_REMOVE;
-	Rid[1].hwndTarget = hwnd;
-	if (!RegisterRawInputDevices(Rid, 2, sizeof(Rid[0])))
+	if (!Input::GetInst()->UnRegisterRawInput())
 	{
 		CheckErr();
 	}
@@ -167,14 +163,12 @@ void Window::Show_Update()
 {
 	ShowWindow(hwnd, SW_SHOW);
 	UpdateWindow(hwnd);
-	//GetCursorPos(&pos);
 }
 
 void Window::MessageProc()
 {
 	MSG msg;
 	BOOL bRet;
-
 	while ((bRet = GetMessage(&msg, hwnd, 0, 0)) != 0)
 	{
 		if ((bRet == -1))
@@ -185,11 +179,13 @@ void Window::MessageProc()
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+
 		}
 	}
+	DestroyWindow(hwnd);
 }
 
 void Window::Destroy()
 {
-	PostMessage(hwnd, WM_CLOSE, 0, 0);
+	PostMessage(hwnd, WM_DESTROY, NULL, NULL);
 }
