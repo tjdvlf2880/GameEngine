@@ -18,19 +18,22 @@ int main()
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 #endif
 {
-	DebugConsole::Create();
+	DebugConsole::AddRef();
 	CrtReport report;
-	CustumGame game;
 	{
-		Input::GetInst()->Create();
 		AppTask app;
-		app.Initialize(&game);
+		app.Initialize();
 		app.Run();
+		CustumGame game;
+		{
+			game.Initialize();
+			game.Update();
+			game.Release();
+		}
 		app.Release();
-		Input::GetInst()->Delete();
 	}
 	report.Check(DumpMode::Conosle);
-	DebugConsole::GetInst()->Delete();
+	DebugConsole::Release();
 	report.FinalCheck(DumpMode::VsOutput);
 	return 0;
 }

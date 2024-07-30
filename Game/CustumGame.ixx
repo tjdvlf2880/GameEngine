@@ -1,17 +1,16 @@
 module;
 #pragma once
 export module CustumGame;
-import IFrameTask;
 import FramePerCounter;
 import TimeCounter;
-export class CustumGame : public IFrameTask
+export class CustumGame 
 {
 	TimeCounter clock;
 	FramePerCounter fpsCounter;
 	bool brun;
 	float elapsed_time;
 public:
-	virtual void Initialize() override;
-	virtual void Update() override;
-	virtual void Release() override;
+	void Initialize();
+	void Update();
+	void Release();
 };

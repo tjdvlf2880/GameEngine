@@ -82,8 +82,11 @@ LRESULT WinMessageProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetWindowLongPtr(hWnd, GWLP_USERDATA, NULL);
 		}
 		PostQuitMessage(0);
-		break;
+		return 0;
 	}
+	case WM_CLOSE:
+		DestroyWindow(hWnd);
+		break;
 	}
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
@@ -171,21 +174,16 @@ void Window::MessageProc()
 	BOOL bRet;
 	while ((bRet = GetMessage(&msg, hwnd, 0, 0)) != 0)
 	{
-		if ((bRet == -1))
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+		if (bRet == -1)
 		{
 			break;
 		}
-		else
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-
-		}
 	}
-	DestroyWindow(hwnd);
 }
 
 void Window::Destroy()
 {
-	PostMessage(hwnd, WM_DESTROY, NULL, NULL);
+	PostMessage(hwnd, WM_CLOSE, NULL, NULL);
 }

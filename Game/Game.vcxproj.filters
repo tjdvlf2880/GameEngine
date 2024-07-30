@@ -86,9 +86,6 @@
     <ClCompile Include="MultiTask.ixx">
       <Filter>소스 파일\Utils\MultiThread</Filter>
     </ClCompile>
-    <ClCompile Include="IFrameTask.ixx">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CustumGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>

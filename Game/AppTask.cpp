@@ -2,21 +2,19 @@ module;
 #pragma once
 module AppTask;
 import CrtReport;
-void AppTask::Initialize(IFrameTask* frametask)
+void AppTask::Initialize()
 {
 	task.Create(L"AppTask");
-	task.SetTask([this , &frametask]()
+	task.SetTask([this]()
 		{
-			app = new App(frametask);
+			app = new App();
 			app->Initialize();
 		});
-
-	this->task.JoinTask();
+	task.JoinTask();
 }
 
 void AppTask::Run()
 {
-	app->brun = true;
 	task.SetTask([this]()
 		{
 			app->Run();
@@ -25,8 +23,6 @@ void AppTask::Run()
 
 void AppTask::Release()
 {
-	
-	app->brun = false;
 	task.SetTask([this]()
 		{
 			app->Release();

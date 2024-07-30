@@ -11,16 +11,20 @@ class Singleton
 {
 private:
     static T* instance;
+    static int refCount;
 protected:
     static SRWLOCK srwlock;
     Singleton() = default;
 public:
     static T* GetInst();
-    static T* Create();
-    static void Delete();
+    static T* AddRef();
+    static void Release();
 };
 template <typename T>
 T* Singleton<T>::instance = nullptr;
+
+template <typename T>
+int Singleton<T>::refCount = 0;
 
 template <typename T>
 SRWLOCK Singleton<T>::srwlock = SRWLOCK_INIT;
@@ -32,24 +36,23 @@ T* Singleton<T>::GetInst()
 }
 
 template<typename T>
-T* Singleton<T>::Create()
+T* Singleton<T>::AddRef()
 {
+    SRWLockGuard<EXCLUSIVE> lock(srwlock);
     if (instance == nullptr)
     {
-        SRWLockGuard<EXCLUSIVE> lock(srwlock);
-        if (instance == nullptr)
-        {
-            instance = new T;
-        }
+        instance = new T;
     }
+    refCount++;
     return instance;
 }
 
 template<typename T>
-void Singleton<T>::Delete()
+void Singleton<T>::Release()
 {
     SRWLockGuard<EXCLUSIVE> lock(srwlock);
-    if (instance != nullptr)
+    refCount--;
+    if (refCount == 0)
     {
         delete instance;
         instance = nullptr;

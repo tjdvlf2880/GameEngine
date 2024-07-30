@@ -155,7 +155,6 @@
     <ClCompile Include="CustumGame.cpp" />
     <ClCompile Include="FramePerCounter.cpp" />
     <ClCompile Include="FramePerCounter.ixx" />
-    <ClCompile Include="IFrameTask.ixx" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Input.ixx" />
     <ClCompile Include="main.cpp" />

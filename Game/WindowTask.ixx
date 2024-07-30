@@ -8,6 +8,7 @@ import Window;
 
 export class WindowTask
 {
+	friend class App;
 private:
 	MultiTask task;
 	Window* window;

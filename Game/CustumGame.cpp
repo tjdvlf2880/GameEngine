@@ -6,26 +6,24 @@ module CustumGame;
 import DebugConsole;
 void CustumGame::Initialize()
 {
+	DebugConsole::Write(L"CustumGame Initialize\n");
 	elapsed_time = 0;
-	brun = true;
 	clock.Reset();
 }
 
 void CustumGame::Update()
 {
-	if (brun)
+	elapsed_time += clock.Update();
+	double fps = fpsCounter.Count(NULL);
+	DebugConsole::Write(L"Thread task : %d  , time : %f \n", GetCurrentThreadId(), elapsed_time);
+	if (elapsed_time >= 5)
 	{
-		elapsed_time += clock.Update();
-		double fps = fpsCounter.Count(NULL);
-		if (elapsed_time >= 2)
-		{
-			DebugConsole::Write(L"Thread task : %d  , FPS : %f \n", GetCurrentThreadId() , fps);
-			elapsed_time = 0; 
-		}
+		DebugConsole::Write(L"Thread task : %d  , FPS : %f \n", GetCurrentThreadId(), fps);
+		elapsed_time = 0;
 	}
 }
 
 void CustumGame::Release()
 {
-	brun = false;
+	DebugConsole::Write(L"CustumGame Release\n");
 }
