@@ -1,129 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="소스 파일\Input">
-      <UniqueIdentifier>{5ed49742-f0be-46f7-ac27-6cc298ea5263}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Window">
-      <UniqueIdentifier>{137bd244-f93f-43a2-b228-a1a34cd08b53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Utils">
-      <UniqueIdentifier>{711fbd1d-4a82-4aac-9e34-16bf9cbcf61d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\App">
+    <Filter Include="App">
       <UniqueIdentifier>{2e8b1866-cc8f-4078-9a73-22be154fcc16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\MultiThread">
+    <Filter Include="App\Window">
+      <UniqueIdentifier>{137bd244-f93f-43a2-b228-a1a34cd08b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Input">
+      <UniqueIdentifier>{5ed49742-f0be-46f7-ac27-6cc298ea5263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{711fbd1d-4a82-4aac-9e34-16bf9cbcf61d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\MultiThread">
       <UniqueIdentifier>{5ba7172b-1f8f-4074-872d-2de4c8d611a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\FramePerCounter">
+    <Filter Include="Utils\FramePerCounter">
       <UniqueIdentifier>{1ac2d44f-79fe-4fba-ad66-ce8d591c0d32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\Timer">
+    <Filter Include="Utils\Timer">
       <UniqueIdentifier>{2c112d0f-e454-44fb-be09-d2c12ac59c86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\String">
+    <Filter Include="Utils\String">
       <UniqueIdentifier>{a4674a96-7c65-4d69-a8be-119b6245140d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\Debug">
+    <Filter Include="Utils\Debug">
       <UniqueIdentifier>{2cabc319-7c92-429a-a39b-42d905d6508a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\Debug\Console">
+    <Filter Include="Utils\Debug\Console">
       <UniqueIdentifier>{6e31801d-97cb-4c42-9430-f83cec29ae90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\Debug\CrtReport">
+    <Filter Include="Utils\Debug\CrtReport">
       <UniqueIdentifier>{e22f8e01-b407-426d-8e44-ce6e26d12575}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Utils\Singleton">
+    <Filter Include="Utils\Singleton">
       <UniqueIdentifier>{3de53ff1-5b74-48f6-aca8-a697a9bc4f7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DebugConsole.cpp">
-      <Filter>소스 파일\Utils\Debug\Console</Filter>
+      <Filter>Utils\Debug\Console</Filter>
     </ClCompile>
     <ClCompile Include="DebugConsole.ixx">
-      <Filter>소스 파일\Utils\Debug\Console</Filter>
+      <Filter>Utils\Debug\Console</Filter>
     </ClCompile>
     <ClCompile Include="Input.ixx">
-      <Filter>소스 파일\Input</Filter>
+      <Filter>App\Input</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>소스 파일\Input</Filter>
+      <Filter>App\Input</Filter>
     </ClCompile>
     <ClCompile Include="WindowTask.ixx">
-      <Filter>소스 파일\Window</Filter>
+      <Filter>App\Window</Filter>
     </ClCompile>
     <ClCompile Include="WindowTask.cpp">
-      <Filter>소스 파일\Window</Filter>
+      <Filter>App\Window</Filter>
     </ClCompile>
     <ClCompile Include="Window.ixx">
-      <Filter>소스 파일\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>App\Window</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>소스 파일\Window</Filter>
+      <Filter>App\Window</Filter>
     </ClCompile>
     <ClCompile Include="App.cpp">
-      <Filter>소스 파일\App</Filter>
+      <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="App.ixx">
-      <Filter>소스 파일\App</Filter>
+      <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="MultiTask.cpp">
-      <Filter>소스 파일\Utils\MultiThread</Filter>
+      <Filter>Utils\MultiThread</Filter>
     </ClCompile>
     <ClCompile Include="MultiTask.ixx">
-      <Filter>소스 파일\Utils\MultiThread</Filter>
-    </ClCompile>
-    <ClCompile Include="CustumGame.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CustumGame.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Utils\MultiThread</Filter>
     </ClCompile>
     <ClCompile Include="AppTask.ixx">
-      <Filter>소스 파일\App</Filter>
+      <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="AppTask.cpp">
-      <Filter>소스 파일\App</Filter>
+      <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="FramePerCounter.ixx">
-      <Filter>소스 파일\Utils\FramePerCounter</Filter>
+      <Filter>Utils\FramePerCounter</Filter>
     </ClCompile>
     <ClCompile Include="FramePerCounter.cpp">
-      <Filter>소스 파일\Utils\FramePerCounter</Filter>
+      <Filter>Utils\FramePerCounter</Filter>
     </ClCompile>
     <ClCompile Include="SRWLockGuard.ixx">
-      <Filter>소스 파일\Utils</Filter>
+      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="TimeCounter.ixx">
-      <Filter>소스 파일\Utils\Timer</Filter>
+      <Filter>Utils\Timer</Filter>
     </ClCompile>
     <ClCompile Include="TimeCounter.cpp">
-      <Filter>소스 파일\Utils\Timer</Filter>
+      <Filter>Utils\Timer</Filter>
     </ClCompile>
     <ClCompile Include="StrConverter.ixx">
-      <Filter>소스 파일\Utils\String</Filter>
+      <Filter>Utils\String</Filter>
     </ClCompile>
     <ClCompile Include="CrtReport.ixx">
-      <Filter>소스 파일\Utils\Debug\CrtReport</Filter>
+      <Filter>Utils\Debug\CrtReport</Filter>
     </ClCompile>
     <ClCompile Include="CrtReport.cpp">
-      <Filter>소스 파일\Utils\Debug\CrtReport</Filter>
+      <Filter>Utils\Debug\CrtReport</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.ixx">
-      <Filter>소스 파일\Utils\Singleton</Filter>
+      <Filter>Utils\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="CustumGame.cpp" />
+    <ClCompile Include="CustumGame.ixx" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>

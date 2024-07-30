@@ -8,6 +8,7 @@ import std;
 import DebugConsole;
 import AppTask;
 import Input;
+
 #define Main_Console
 
 #ifdef Main_Console
